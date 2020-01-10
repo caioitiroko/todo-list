@@ -24,6 +24,7 @@ const TodoApp = () => {
       <div className="todo-app__container">
         <h1 className="todo-app__title">Todo List</h1>
         <TodoList
+          data-testid="todo-list"
           items={items}
           onRemoveItem={handleRemoveItem}
           onToggleItem={handleToggleItem}

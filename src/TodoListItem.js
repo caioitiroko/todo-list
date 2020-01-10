@@ -2,8 +2,8 @@ import "./TodoListItem.css";
 
 import React from "react";
 
-const TodoListItem = ({ item, onRemoveItem, onToggleItem }) => (
-  <div className="todo-list-item">
+const TodoListItem = ({ index, item, onRemoveItem, onToggleItem }) => (
+  <div className="todo-list-item" data-testid={`todo-list-item-${index}`}>
     <span
       className={`todo-list-item__value ${item.done &&
         "todo-list-item__value-done"}`}

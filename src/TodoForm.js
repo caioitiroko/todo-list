@@ -17,9 +17,21 @@ const TodoForm = ({ onAddItem }) => {
   };
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit} className="todo-form">
-      <input type="text" ref={inputRef} placeholder="add a new todo..." />
-      <button type="submit">Add</button>
+    <form
+      className="todo-form"
+      data-testid="todo-form"
+      onSubmit={handleSubmit}
+      ref={formRef}
+    >
+      <input
+        data-testid="todo-form-value"
+        placeholder="add a new todo..."
+        ref={inputRef}
+        type="text"
+      />
+      <button type="submit" data-testid="todo-form-submit">
+        Add
+      </button>
     </form>
   );
 };

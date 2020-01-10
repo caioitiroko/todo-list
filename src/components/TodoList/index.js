@@ -1,6 +1,6 @@
 import React from "react";
 
-import TodoListItem from "./TodoListItem";
+import TodoListItem from "../TodoListItem";
 
 const TodoList = ({ items, onRemoveItem, onToggleItem }) => {
   if (!items || items.length === 0) {

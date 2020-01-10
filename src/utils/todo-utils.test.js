@@ -1,4 +1,4 @@
-import { addTodo, removeTodo, toggleTodo } from "./utils";
+import { addTodo, removeTodo, toggleTodo } from "./todo-utils";
 
 describe("test utils", () => {
   describe(".addTodo", () => {

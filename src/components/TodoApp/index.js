@@ -1,11 +1,11 @@
-import "./TodoApp.css";
+import "./index.css";
 
 import React, { useEffect, useState } from "react";
-import { addTodo, removeTodo, toggleTodo } from "./utils";
+import { addTodo, removeTodo, toggleTodo } from "../../utils";
 
-import TodoForm from "./TodoForm";
-import TodoList from "./TodoList";
-import { fetchTodos } from "./services";
+import TodoForm from "../TodoForm";
+import TodoList from "../TodoList";
+import { fetchTodos } from "../../services";
 
 const TodoApp = () => {
   const [items, setItems] = useState([]);

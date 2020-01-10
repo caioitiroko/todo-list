@@ -1,16 +1,39 @@
+import "regenerator-runtime/runtime";
+
 import {
-  render,
-  waitForElement,
   cleanup,
-  fireEvent
+  fireEvent,
+  render,
+  waitForElement
 } from "@testing-library/react";
 
 import React from "react";
-import TodoApp from "./TodoApp";
+import TodoApp from "./index";
 
-const mockedFetch = jest.spyOn(window, "fetch");
+const mockFetch = data =>
+  jest.fn(() =>
+    Promise.resolve({
+      ok: true,
+      json: () => data
+    })
+  );
 
 describe("<TodoApp />", () => {
+  beforeEach(() => {
+    global.fetch = jest.fn().mockImplementation(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve([])
+      })
+    );
+  });
+
+  afterEach(() => {
+    if (global.fetch && global.fetch.clearMocks) {
+      global.fetch.clearMocks();
+    }
+  });
+
   it("renders an empty list", async () => {
     const { getByTestId } = render(<TodoApp />);
 
@@ -19,25 +42,23 @@ describe("<TodoApp />", () => {
   });
 
   it("renders an fetched todo list", async () => {
-    mockedFetch.mockImplementationOnce(() => {
-      return Promise.resolve({
-        json: () =>
-          Promise.resolve([
-            { value: "buy milk", done: false },
-            { value: "buy beer", done: false }
-          ])
-      });
-    });
+    global.fetch = jest.fn().mockImplementation(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve([{ value: "buy milk", done: false }])
+      })
+    );
 
     const { getByTestId, getByText } = render(<TodoApp />);
 
     await waitForElement(() => getByTestId("todo-list"));
     expect(getByText("buy milk")).toBeDefined();
-    expect(getByText("buy beer")).toBeDefined();
   });
 
   it("adds a new todo", async () => {
     const { getByTestId, getByText } = render(<TodoApp />);
+
+    await waitForElement(() => getByTestId("todo-form-value"));
 
     const todoInput = getByTestId("todo-form-value");
     const todoSubmit = getByTestId("todo-form-submit");

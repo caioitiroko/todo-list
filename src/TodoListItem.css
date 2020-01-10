@@ -1,0 +1,15 @@
+.todo-list-item {
+  display: flex;
+  justify-content: center;
+}
+
+.todo-list-item__value {
+  margin-right: 10px;
+  font-size: 16px;
+  color: #28a745;
+}
+
+.todo-list-item__value-done {
+  text-decoration: line-through;
+  color: #dc3545;
+}

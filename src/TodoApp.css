@@ -1,0 +1,12 @@
+.todo-app {
+  display: flex;
+  justify-content: center;
+}
+
+.todo-app__container {
+  width: 500px;
+}
+
+.todo-app__title {
+  text-align: center;
+}
